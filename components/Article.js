@@ -86,6 +86,27 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Weeviling the Bride',
+    date: 'May 11th, 2021',
+    firstParagraph: `They take our tongues and give us guns
+    Two coins for the ferryman, for when you're gone
+    The weight of souls drives his boat ashore and he sails no more
+    Staring out across the end`,
+
+    secondParagraph: `Chiseling the granite from our dusty eyelids, harvesting the stones we throw
+    We caught a virus from the periscope inside us, we caught a virus from the periscope
+    We caught a virus from the periscope inside us, we caught a virus, we caught a virus
+    Star-struck freeze-frame capture
+    That coin-flip fateful harmony-muted feedback
+    With your cold hands on the foreheads so feverish and frantic
+    While madmen lay your landmines in the ballroom`,
+
+    thirdParagraph: `He sings oo-oo-oo I've never been here before
+    Even years ago after the war
+    And it goes on, and on, and on, until you're gone
+    And I just need to know that everything is fine, and everyone's alright`
   }
 ];
 
@@ -114,3 +135,45 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+let articles = document.querySelector('.articles')
+
+data.forEach((article) => {
+  articles.appendChild(articleMaker(article))
+})
+
+function articleMaker(data){
+  const articleDiv = document.createElement('div')
+  articleDiv.classList.add("article")
+
+  const articleh2 = document.createElement('h2')
+  articleh2.textContent = (data.title)
+  articleDiv.appendChild(articleh2)
+
+  const articleDate = document.createElement('p')
+  articleDate.textContent = (data.date)
+  articleDiv.appendChild(articleDate)
+
+  const para1 = document.createElement('p')
+  para1.textContent = (data.firstParagraph)
+  articleDiv.appendChild(para1)
+
+  const para2 = document.createElement('p')
+  para2.textContent = (data.secondParagraph)
+  articleDiv.appendChild(para2)
+
+  const para3 = document.createElement('p')
+  para3.textContent = (data.thirdParagraph)
+  articleDiv.appendChild(para3)
+
+  const span = document.createElement('span')
+  span.classList.add('expandButton')
+  span.textContent = "+"
+  span.addEventListener('click', () => {
+    articleDiv.classList.toggle('article-open')
+  })
+
+  articleDiv.appendChild(span)
+
+  return articleDiv
+}
